@@ -55,8 +55,6 @@ class MainActivity : ComponentActivity() {
         var showMain by rememberSaveable { mutableStateOf(viewModel.mainScreen) }
 
         if (showMain) {
-            viewModel.getData()
-            viewModel.readDatabase()
             ArticleScreen(viewModel = viewModel, onClicked = {viewModel.mainScreen = false
             showMain = viewModel.mainScreen})
         } else {

@@ -12,10 +12,7 @@ import com.example.space_news_compose.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import retrofit2.Response
@@ -25,10 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(val repoInterface: RepoInterface): ViewModel() {
 
-    private val _data: MutableStateFlow<Resource<ArrayList<SpaceModelItem>>> = MutableStateFlow(Resource.Loading())
-    var data: StateFlow<Resource<ArrayList<SpaceModelItem>>> = _data
-
-    var readArticle: List<ArticleEntity> = listOf()
+    private var _data: MutableStateFlow<Resource<List<ArticleEntity>>> = MutableStateFlow(Resource.Loading())
+    var data: StateFlow<Resource<List<ArticleEntity>>> = _data
 
     var mainScreen = true
 
@@ -37,48 +32,9 @@ class MainViewModel @Inject constructor(val repoInterface: RepoInterface): ViewM
 
     fun getData(){
         viewModelScope.launch(Dispatchers.IO) {
-            try {
-                _data.emit(Resource.Loading())
-                val response = repoInterface.getData()
-                _data.emit(handleResponse(response))
-                response.body()?.let {
-                    nukeData()
-                    for (article in it){
-                        insertIntoDatabase(article)
-                    }
-                }
-            } catch (e: HttpException) {
-                _data.emit(Resource.Error("Could not load articles"))
-            } catch (e: IOException) {
-                _data.emit(Resource.Error("Internet connection issue"))
-            }
+           repoInterface.getData().collect(){
+               _data.value = it
+           }
         }
-    }
-
-    fun readDatabase() = viewModelScope.launch(Dispatchers.IO){
-        repoInterface.readArticlesFromDB().collect(){
-            readArticle = it
-        }
-    }
-
-    var databaseArticles = repoInterface.readArticlesFromDB()
-
-    fun insertIntoDatabase(model: SpaceModelItem){
-        val articleEntity = ArticleEntity(model)
-        CoroutineScope(Dispatchers.IO).launch {
-            repoInterface.insertArticlesToDB(articleEntity)
-        }
-    }
-
-
-    fun nukeData(){
-        CoroutineScope(Dispatchers.IO).launch {
-            repoInterface.nukeTable()
-        }
-    }
-
-    private fun handleResponse(response: Response<ArrayList<SpaceModelItem>>): Resource<ArrayList<SpaceModelItem>> {
-        return if (response.isSuccessful) Resource.Success(response.body()!!)
-        else Resource.Error(response.message())
     }
 }

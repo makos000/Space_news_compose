@@ -1,6 +1,7 @@
 package com.example.space_news_compose.model
 
 
+import com.example.space_news_compose.room.ArticleEntity
 import com.google.gson.annotations.SerializedName
 
 data class SpaceModelItem(

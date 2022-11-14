@@ -20,9 +20,11 @@ import com.example.space_news_compose.room.ArticleEntity
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ArticleScreen(viewModel: MainViewModel, onClicked: () -> Unit) {
-    val list = viewModel.data.collectAsState().value.data
+    LaunchedEffect(true) {
+        viewModel.getData()
+    }
 
-    val dbList = viewModel.readArticle
+    val dbList = viewModel.data.collectAsState().value.data
 
     if (dbList != null) {
         if (dbList.isEmpty()) {
@@ -54,5 +56,12 @@ fun ArticleScreen(viewModel: MainViewModel, onClicked: () -> Unit) {
                 }
             }
         }
+    }else{
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(text = "Nothing here...")
     }
+}
 }
