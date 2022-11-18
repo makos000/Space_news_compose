@@ -1,4 +1,4 @@
-package com.example.space_news_compose.ui.theme
+package com.example.space_news_compose.app.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

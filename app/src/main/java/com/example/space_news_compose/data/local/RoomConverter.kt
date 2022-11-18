@@ -1,12 +1,12 @@
-package com.example.space_news_compose.room
+package com.example.space_news_compose.data.local
 
 import androidx.room.TypeConverter
-import com.example.space_news_compose.model.SpaceModelItem
+import com.example.space_news_compose.domain.model.SpaceModelItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class RoomConverter {
-    var gson = Gson()
+    private var gson = Gson()
 
     @TypeConverter
     fun articlesToString(spaceModel: SpaceModelItem): String = gson.toJson(spaceModel)

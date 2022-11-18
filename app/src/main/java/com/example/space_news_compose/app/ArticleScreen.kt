@@ -1,4 +1,4 @@
-package com.example.space_news_compose.ui
+package com.example.space_news_compose.app
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,9 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
-import com.example.space_news_compose.room.ArticleEntity
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -35,7 +33,7 @@ fun ArticleScreen(viewModel: MainViewModel, onClicked: () -> Unit) {
                 Text(text = "Nothing here...")
             }
         } else {
-            LazyColumn(){
+            LazyColumn {
                 itemsIndexed(items = dbList){
                         index, item ->
                     Card(onClick = { onClicked.invoke()

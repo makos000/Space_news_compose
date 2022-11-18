@@ -1,4 +1,4 @@
-package com.example.space_news_compose.ui.theme
+package com.example.space_news_compose.app.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

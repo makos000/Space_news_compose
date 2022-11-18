@@ -1,4 +1,4 @@
-package com.example.space_news_compose.room
+package com.example.space_news_compose.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

@@ -1,4 +1,4 @@
-package com.example.space_news_compose.model
+package com.example.space_news_compose.domain.model
 
 
 import com.google.gson.annotations.SerializedName

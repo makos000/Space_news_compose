@@ -1,10 +1,8 @@
-package com.example.space_news_compose.repo
+package com.example.space_news_compose.data.repo
 
-import com.example.space_news_compose.model.SpaceModelItem
-import com.example.space_news_compose.room.ArticleEntity
+import com.example.space_news_compose.data.local.ArticleEntity
 import com.example.space_news_compose.util.Resource
 import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
 
 interface RepoInterface {
 

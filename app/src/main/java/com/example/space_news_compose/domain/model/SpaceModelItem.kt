@@ -1,30 +1,29 @@
-package com.example.space_news_compose.model
+package com.example.space_news_compose.domain.model
 
 
-import com.example.space_news_compose.room.ArticleEntity
 import com.google.gson.annotations.SerializedName
 
 data class SpaceModelItem(
     @SerializedName("events")
-    val events: List<Any>,
+    val events: List<Any> = listOf(),
     @SerializedName("featured")
-    val featured: Boolean,
+    val featured: Boolean = false,
     @SerializedName("id")
-    val id: Int,
+    val id: Int = 0,
     @SerializedName("imageUrl")
-    val imageUrl: String,
+    val imageUrl: String = "",
     @SerializedName("launches")
-    val launches: List<Launche>,
+    val launches: List<Launche> = listOf(),
     @SerializedName("newsSite")
-    val newsSite: String,
+    val newsSite: String = "",
     @SerializedName("publishedAt")
-    val publishedAt: String,
+    val publishedAt: String = "",
     @SerializedName("summary")
-    val summary: String,
+    val summary: String = "",
     @SerializedName("title")
-    val title: String,
+    val title: String = "",
     @SerializedName("updatedAt")
-    val updatedAt: String,
+    val updatedAt: String = "",
     @SerializedName("url")
-    val url: String
+    val url: String = ""
 )

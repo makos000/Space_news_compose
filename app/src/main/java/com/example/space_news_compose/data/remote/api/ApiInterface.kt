@@ -1,6 +1,6 @@
-package com.example.space_news_compose.api
+package com.example.space_news_compose.data.remote.api
 
-import com.example.space_news_compose.model.SpaceModelItem
+import com.example.space_news_compose.domain.model.SpaceModelItem
 import retrofit2.Response
 import retrofit2.http.GET
 

@@ -1,12 +1,10 @@
-package com.example.space_news_compose.room
+package com.example.space_news_compose.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 @Dao
 interface ArticleDao {

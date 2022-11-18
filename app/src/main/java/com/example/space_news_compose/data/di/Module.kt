@@ -1,13 +1,14 @@
-package com.example.space_news_compose.di
+package com.example.space_news_compose.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.space_news_compose.api.ApiInterface
-import com.example.space_news_compose.api.ApiRes
-import com.example.space_news_compose.repo.RepoImpl
-import com.example.space_news_compose.repo.RepoInterface
-import com.example.space_news_compose.room.ArticleDao
-import com.example.space_news_compose.room.ArticleDatabase
+import com.example.space_news_compose.data.remote.api.ApiInterface
+import com.example.space_news_compose.data.remote.api.ApiRes
+import com.example.space_news_compose.data.repo.RepoImpl
+import com.example.space_news_compose.data.repo.RepoInterface
+import com.example.space_news_compose.data.local.ArticleDao
+import com.example.space_news_compose.data.local.ArticleDatabase
+import com.example.space_news_compose.data.remote.RemoteDataSourceImpl
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -19,6 +20,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -56,10 +58,16 @@ class Module {
         return retrofit.create(ApiInterface::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun getRemoteDS(apiInterface: ApiInterface): RemoteDataSourceImpl {
+        return RemoteDataSourceImpl(apiInterface)
+    }
+
 
     @Provides
-    fun getRepo(apiInterface: ApiInterface, articleDao: ArticleDao): RepoInterface {
-        return RepoImpl(apiInterface, articleDao)
+    fun getRepo(remote: RemoteDataSourceImpl, local: ArticleDao): RepoInterface {
+        return RepoImpl(remote, local)
     }
 
     @Provides

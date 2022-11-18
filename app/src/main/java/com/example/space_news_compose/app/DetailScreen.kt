@@ -1,10 +1,7 @@
-package com.example.space_news_compose.ui
+package com.example.space_news_compose.app
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -21,7 +18,7 @@ import coil.compose.rememberAsyncImagePainter
 @Composable
 fun DetailScreen(onClicked: () -> Unit, viewModel: MainViewModel) {
     Surface {
-        Row() {
+        Row {
             IconButton(onClick = onClicked) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
