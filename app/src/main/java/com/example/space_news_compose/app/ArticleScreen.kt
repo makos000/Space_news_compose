@@ -60,6 +60,6 @@ fun ArticleScreen(viewModel: MainViewModel, onClicked: () -> Unit) {
             contentAlignment = Alignment.Center
         ) {
             Text(text = "Nothing here...")
+        }
     }
-}
 }

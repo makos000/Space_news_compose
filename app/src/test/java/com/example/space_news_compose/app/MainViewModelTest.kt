@@ -57,13 +57,16 @@ class MainViewModelTest {
         Dispatchers.resetMain()
     }
 
-    /*@Test
+    //fixed test
+
+    @Test
     fun `api call test`() = runBlocking {
         viewModel.getData()
         viewModel.data.test {
             assertTrue(awaitItem() is Resource.Loading)
+            awaitItem()
             val result = viewModel.data.value.data?.get(0)?.spaceModel
-            assertEquals(awaitItem().data, result)
+            assertEquals(awaitItem().data?.get(0)?.spaceModel , result)
         }
-    }*/
+    }
 }
