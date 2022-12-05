@@ -1,4 +1,4 @@
-package com.example.space_news_compose.data.local
+package com.example.space_news_compose.data.local.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

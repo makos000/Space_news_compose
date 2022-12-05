@@ -2,13 +2,14 @@ package com.example.space_news_compose.data.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.space_news_compose.data.local.localds.LocalDSImpl
 import com.example.space_news_compose.data.remote.api.ApiInterface
 import com.example.space_news_compose.data.remote.api.ApiRes
 import com.example.space_news_compose.data.repo.RepoImpl
-import com.example.space_news_compose.data.repo.RepoInterface
-import com.example.space_news_compose.data.local.ArticleDao
-import com.example.space_news_compose.data.local.ArticleDatabase
-import com.example.space_news_compose.data.remote.RemoteDataSourceImpl
+import com.example.space_news_compose.domain.repo.RepoInterface
+import com.example.space_news_compose.data.local.room.ArticleDao
+import com.example.space_news_compose.data.local.room.ArticleDatabase
+import com.example.space_news_compose.data.remote.remoteds.RemoteDataSourceImpl
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -66,7 +67,7 @@ class Module {
 
 
     @Provides
-    fun getRepo(remote: RemoteDataSourceImpl, local: ArticleDao): RepoInterface {
+    fun getRepo(remote: RemoteDataSourceImpl, local: LocalDSImpl): RepoInterface {
         return RepoImpl(remote, local)
     }
 

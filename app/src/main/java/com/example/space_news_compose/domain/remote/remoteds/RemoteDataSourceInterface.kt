@@ -1,4 +1,4 @@
-package com.example.space_news_compose.data.remote
+package com.example.space_news_compose.domain.remote.remoteds
 
 import com.example.space_news_compose.domain.model.SpaceModelItem
 import com.example.space_news_compose.util.Resource

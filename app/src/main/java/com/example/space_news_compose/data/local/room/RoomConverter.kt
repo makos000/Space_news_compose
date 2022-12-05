@@ -1,4 +1,4 @@
-package com.example.space_news_compose.data.local
+package com.example.space_news_compose.data.local.room
 
 import androidx.room.TypeConverter
 import com.example.space_news_compose.domain.model.SpaceModelItem

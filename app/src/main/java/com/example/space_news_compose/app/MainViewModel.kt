@@ -2,8 +2,8 @@ package com.example.space_news_compose.app
 
 import androidx.lifecycle.*
 import com.example.space_news_compose.domain.model.SpaceModelItem
-import com.example.space_news_compose.data.repo.RepoInterface
-import com.example.space_news_compose.data.local.ArticleEntity
+import com.example.space_news_compose.domain.repo.RepoInterface
+import com.example.space_news_compose.data.local.room.ArticleEntity
 import com.example.space_news_compose.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
